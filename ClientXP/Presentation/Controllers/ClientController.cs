@@ -1,8 +1,7 @@
 ﻿using ClientXP.Application.Models;
 using ClientXP.Application.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Net;
-
+using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace ClientXP.Presentation.Controllers
 {
@@ -43,7 +42,7 @@ namespace ClientXP.Presentation.Controllers
                 }
                 return NotFound($"Não foi encontrado nenhum cliente com o id: {id}");
             }
-            return BadRequest("O id passado é invalido!");
+            return BadRequest("O id passado é inválido!");
         }
 
         [HttpPost("create")]
@@ -88,7 +87,37 @@ namespace ClientXP.Presentation.Controllers
                 }
                 return BadRequest("Verifique os dados do cliente.");
             }
-            return BadRequest("O id passado é invalido!");
+            return BadRequest("O id passado é inválido!");
+        }
+
+        [HttpPatch("update-email")]
+        public async Task<ActionResult> UpdateEmail([FromBody] ClientEmailModel emailModel)
+        {
+            if (!String.IsNullOrEmpty(emailModel.Email))
+            {
+                if (emailModel.Id > 0)
+                {
+                    if (
+                }
+                return BadRequest("O id passado é inválido");
+            }
+            return BadRequest("Email nulo ou vazio.");
+        }
+
+        [HttpDelete("delete")]
+        public async Task<ActionResult> Delete([FromQuery] int id)
+        {
+            if (id > 0)
+            {
+                var dataClient = await _service.GetByIdAsync(id);
+                if (dataClient != null)
+                {
+                    await _service.DeleteAsync(dataClient);
+                    return Ok("Cliente deletado com sucesso");
+                }
+                return NotFound($"Não foi encontrado nenhum cliente com o id: {id}");
+            }
+            return BadRequest("O id passado é invalido");
         }
     }
 }

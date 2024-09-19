@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "ClientXP.Presentation.Controllers.ClientController",
+    "Method": "Delete",
+    "RelativePath": "Client/Delete",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ClientXP.Presentation.Controllers.ClientController",
     "Method": "GetAll",
     "RelativePath": "Client/get-all",
     "HttpMethod": "GET",

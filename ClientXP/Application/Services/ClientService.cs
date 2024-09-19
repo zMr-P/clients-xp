@@ -91,6 +91,13 @@ namespace ClientXP.Application.Services
             _context.Clients.Update(client);
             await _context.SaveChangesAsync();
         }
+
+        public Task DeleteAsync(Client client)
+        {
+            _context.Clients.Remove(client);
+            _context.SaveChanges();
+            return Task.CompletedTask;
+        }
     }
 }
 
