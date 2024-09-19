@@ -6,7 +6,7 @@ namespace ClientXP.Infraestructure.Config
     {
         public static IServiceCollection ConfigServices(this IServiceCollection services)
         {
-            services.AddScoped<ClientService>();
+            services.AddTransient<ClientService>();
             return services;
         }
     }

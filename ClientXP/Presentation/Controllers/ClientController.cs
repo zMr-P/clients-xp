@@ -1,6 +1,7 @@
 ﻿using ClientXP.Application.Models;
 using ClientXP.Application.Services;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 
 namespace ClientXP.Presentation.Controllers
@@ -25,31 +26,69 @@ namespace ClientXP.Presentation.Controllers
             {
                 return Ok(dataClients);
             }
-            return NotFound("Não foi encontrado nehum cliente");
+            return NotFound("Não foi encontrado nehum cliente.");
         }
+
         [HttpGet("get-by-id")]
         public async Task<ActionResult> GetById([FromQuery] int id)
         {
-            var dataClient = await _service.GetByIdAsync(id);
+            if (id > 0)
+            {
 
-            if (dataClient != null)
-            {
-                return Ok(dataClient);
+                var dataClient = await _service.GetByIdAsync(id);
+
+                if (dataClient != null)
+                {
+                    return Ok(dataClient);
+                }
+                return NotFound($"Não foi encontrado nenhum cliente com o id: {id}");
             }
-            return NotFound("Não foi encontrado um cliente com esse id");
+            return BadRequest("O id passado é invalido!");
         }
+
         [HttpPost("create")]
-        public async Task<ActionResult> Create([FromBody] ClientModel client)
+        public async Task<ActionResult> Create([FromBody] ClientModel clModel)
         {
-            try
+            if (clModel != null)
             {
-                await _service.CreateAsync(client);
-                return Ok("Success");
+                try
+                {
+                    await _service.CreateAsync(clModel);
+                    return Ok("Sucesso ao criar cliente!");
+                }
+                catch (Exception ex)
+                {
+                    return BadRequest(ex.Message);
+                }
             }
-            catch (Exception ex)
+            return BadRequest("Verifique os dados do cliente.");
+        }
+
+        [HttpPut("update")]
+        public async Task<ActionResult> Update([FromQuery] int id, [FromBody] ClientModel clModel)
+        {
+            if (id > 0)
             {
-                return BadRequest(ex.Message);
+                if (clModel != null)
+                {
+                    var dataClient = await _service.GetByIdAsync(id);
+                    if (dataClient != null)
+                    {
+                        try
+                        {
+                            await _service.UpdateAsync(dataClient, clModel);
+                            return Ok("Sucesso ao atualizar cliente!");
+                        }
+                        catch (Exception ex)
+                        {
+                            return BadRequest(ex.Message);
+                        }
+                    }
+                    return NotFound($"Não foi encontrado nenhum cliente com o id: {id}");
+                }
+                return BadRequest("Verifique os dados do cliente.");
             }
+            return BadRequest("O id passado é invalido!");
         }
     }
 }

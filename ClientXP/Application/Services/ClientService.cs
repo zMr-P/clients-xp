@@ -26,7 +26,7 @@ namespace ClientXP.Application.Services
         {
             var dataClient = _context.Clients
                 .Where(c => c.Id == id)
-                .First();
+                .FirstOrDefault();
 
             return Task.FromResult(dataClient);
         }
@@ -58,6 +58,37 @@ namespace ClientXP.Application.Services
                 }
             }
             _context.Clients.Add(client);
+            await _context.SaveChangesAsync();
+        }
+        public async Task UpdateAsync(Client client, ClientModel clModel)
+        {
+            if (!client.CPF.Equals(clModel.CPF))
+            {
+                var dataClients = await GetAllClientsAsync();
+                if (dataClients != null && dataClients.Count > 0)
+                {
+                    foreach (var dataClient in dataClients)
+                    {
+                        if (dataClient.CPF.Equals(clModel.CPF))
+                        {
+                            throw new ArgumentException("O CPF já está cadastrado");
+                        }
+                    }
+                }
+            }
+
+            client.Name = clModel.Name;
+            client.Email = clModel.Email;
+            client.CPF = clModel.CPF;
+
+            var validationResult = _validator.Validate(client);
+            if (!validationResult.IsValid)
+            {
+                var errors = String.Join("; ",
+                    validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new ArgumentException(errors);
+            }
+            _context.Clients.Update(client);
             await _context.SaveChangesAsync();
         }
     }
