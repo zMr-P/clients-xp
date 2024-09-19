@@ -36,3 +36,4 @@ C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXP\bin
 C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXP\bin\Debug\net8.0\FluentValidation.dll
 C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXP\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXP\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
+C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXP\obj\Debug\net8.0\ClientXP.sourcelink.json
