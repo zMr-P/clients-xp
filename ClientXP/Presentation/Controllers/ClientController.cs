@@ -1,5 +1,6 @@
 ﻿using ClientXP.Application.Models;
 using ClientXP.Application.Services;
+using ClientXP.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Update.Internal;
 
@@ -9,9 +10,9 @@ namespace ClientXP.Presentation.Controllers
     [Route("[Controller]")]
     public class ClientController : ControllerBase
     {
-        private readonly ClientService _service;
+        private readonly IClientService _service;
 
-        public ClientController(ClientService service)
+        public ClientController(IClientService service)
         {
             _service = service;
         }

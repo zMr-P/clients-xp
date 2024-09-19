@@ -2,7 +2,6 @@
 using ClientXP.Application.Services.Interfaces;
 using ClientXP.Domain.Entities;
 using ClientXP.Domain.Interfaces;
-using ClientXP.Infraestructure.Context;
 using FluentValidation;
 
 namespace ClientXP.Application.Services
@@ -24,13 +23,11 @@ namespace ClientXP.Application.Services
 
             return dataClients;
         }
-        public Task<Client> GetByIdAsync(int id)
+        public async Task<Client> GetByIdAsync(int id)
         {
-            var dataClient = _context.Clients
-                .Where(c => c.Id == id)
-                .FirstOrDefault();
+            var dataClient = await _repository.GetByIdAsync(id);
 
-            return Task.FromResult(dataClient);
+            return dataClient;
         }
         public async Task CreateAsync(ClientModel clModel)
         {
@@ -59,8 +56,7 @@ namespace ClientXP.Application.Services
                     }
                 }
             }
-            _context.Clients.Add(client);
-            await _context.SaveChangesAsync();
+            await _repository.AddAsync(client);
         }
         public async Task UpdateAsync(Client client, ClientModel clModel)
         {
@@ -90,8 +86,7 @@ namespace ClientXP.Application.Services
                     validationResult.Errors.Select(e => e.ErrorMessage));
                 throw new ArgumentException(errors);
             }
-            _context.Clients.Update(client);
-            await _context.SaveChangesAsync();
+            await _repository.UpdateAsync(client);
         }
 
         public async Task UpdateEmailAsync(Client client, string email)
@@ -105,14 +100,12 @@ namespace ClientXP.Application.Services
                 throw new ArgumentException(errors);
             }
 
-            await _context.SaveChangesAsync();
+            await _repository.UpdateAsync(client);
         }
 
-        public Task DeleteAsync(Client client)
+        public async Task DeleteAsync(Client client)
         {
-            _context.Clients.Remove(client);
-            _context.SaveChanges();
-            return Task.CompletedTask;
+            await _repository.DeleteAsync(client);
         }
     }
 }

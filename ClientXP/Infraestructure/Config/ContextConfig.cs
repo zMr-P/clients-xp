@@ -1,4 +1,5 @@
 ﻿using ClientXP.Infraestructure.Context;
+using ClientXP.Infraestructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClientXP.Infraestructure.Config
@@ -9,6 +10,7 @@ namespace ClientXP.Infraestructure.Config
         {
             services.AddDbContext<XpClientsContext>(options =>
             options.UseInMemoryDatabase("xp_dream"));
+            services.AddScoped<IDbContext, XpClientsContext>();
             return services;
         }
         public static void EnsureDatabaseCreated(this IApplicationBuilder app)

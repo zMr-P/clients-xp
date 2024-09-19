@@ -1,15 +1,20 @@
 ﻿using ClientXP.Domain.Entities;
+using ClientXP.Infraestructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace ClientXP.Infraestructure.Context
 {
-    public class XpClientsContext : DbContext
+    public class XpClientsContext : DbContext, IDbContext
     {
         public XpClientsContext(DbContextOptions options) : base(options)
         {
 
         }
         public DbSet<Client> Clients { get; set; }
+        public async Task<int> SaveChangesAsync()
+        {
+            return await base.SaveChangesAsync();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

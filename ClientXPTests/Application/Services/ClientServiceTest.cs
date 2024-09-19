@@ -1,5 +1,6 @@
 ﻿using ClientXP.Application.Services;
 using ClientXP.Domain.Entities;
+using Moq;
 
 namespace ClientXPTests.Application.Services
 {
@@ -31,6 +32,7 @@ namespace ClientXPTests.Application.Services
                     CPF = "141.556.258-45"
                 }
             };
+
         }
     }
 }

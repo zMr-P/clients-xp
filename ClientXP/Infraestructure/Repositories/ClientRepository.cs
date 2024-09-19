@@ -1,33 +1,43 @@
 ﻿using ClientXP.Domain.Entities;
 using ClientXP.Domain.Interfaces;
+using ClientXP.Infraestructure.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClientXP.Infraestructure.Repositories
 {
     public class ClientRepository : IClientRepository
     {
-        public Task AddAsync(Client client)
+        private readonly XpClientsContext _context;
+        public ClientRepository(XpClientsContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task AddAsync(Client client)
+        {
+            await _context.Clients.AddAsync(client);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(Client client)
+        public async Task DeleteAsync(Client client)
         {
-            throw new NotImplementedException();
+            _context.Clients.Remove(client);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<List<Client>> GetAllAsync()
+        public async Task<List<Client>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Clients.ToListAsync();
         }
 
-        public Task<Client> GetByIdAsync(int id)
+        public async Task<Client> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Clients.FindAsync(id);
         }
 
-        public Task UpdateAsync(Client client)
+        public async Task UpdateAsync(Client client)
         {
-            throw new NotImplementedException();
+            _context.Clients.Update(client);
+            await _context.SaveChangesAsync();
         }
     }
 }
