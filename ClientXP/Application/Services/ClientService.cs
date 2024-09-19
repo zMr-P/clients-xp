@@ -1,26 +1,28 @@
 ﻿using ClientXP.Application.Models;
+using ClientXP.Application.Services.Interfaces;
 using ClientXP.Domain.Entities;
+using ClientXP.Domain.Interfaces;
 using ClientXP.Infraestructure.Context;
 using FluentValidation;
 
 namespace ClientXP.Application.Services
 {
-    public class ClientService
+    public class ClientService : IClientService
     {
-        private readonly XpClientsContext _context;
+        private readonly IClientRepository _repository;
         private readonly IValidator<Client> _validator;
 
-        public ClientService(XpClientsContext context, IValidator<Client> validator)
+        public ClientService(IClientRepository repository, IValidator<Client> validator)
         {
-            _context = context;
+            _repository = repository;
             _validator = validator;
         }
 
-        public Task<List<Client>> GetAllClientsAsync()
+        public async Task<List<Client>> GetAllClientsAsync()
         {
-            var dataClients = _context.Clients.ToList();
+            var dataClients = await _repository.GetAllAsync();
 
-            return Task.FromResult(dataClients);
+            return dataClients;
         }
         public Task<Client> GetByIdAsync(int id)
         {
