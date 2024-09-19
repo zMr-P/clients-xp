@@ -92,6 +92,20 @@ namespace ClientXP.Application.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateEmailAsync(Client client, string email)
+        {
+            client.Email = email;
+            var validationResult = _validator.Validate(client);
+            if (!validationResult.IsValid)
+            {
+                var errors = String.Join("; ",
+                    validationResult.Errors.Select(e => e.ErrorMessage));
+                throw new ArgumentException(errors);
+            }
+
+            await _context.SaveChangesAsync();
+        }
+
         public Task DeleteAsync(Client client)
         {
             _context.Clients.Remove(client);

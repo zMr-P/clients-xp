@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ClientXP.Application.Services;
 
 namespace ClientXPTests.Application.Services
 {
-    internal class ClientServiceTest
+    public class ClientServiceTest
     {
+        private readonly ClientService _service;
+        public ClientServiceTest(ClientService service)
+        {
+            _service = service;
+        }
     }
 }

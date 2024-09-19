@@ -1,4 +1,5 @@
-﻿using ClientXP.Domain.Entities;
+﻿using ClientXP.Application.Services;
+using ClientXP.Domain.Entities;
 using FluentValidation;
 
 namespace ClientXP.Domain.Validations

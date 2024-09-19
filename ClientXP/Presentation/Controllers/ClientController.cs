@@ -97,7 +97,20 @@ namespace ClientXP.Presentation.Controllers
             {
                 if (emailModel.Id > 0)
                 {
-                    if (
+                    var dataClient = await _service.GetByIdAsync(emailModel.Id);
+                    if (dataClient != null)
+                    {
+                        try
+                        {
+                            await _service.UpdateEmailAsync(dataClient, emailModel.Email);
+                            return Ok($"Sucesso ao alterar email do cliente: {dataClient.Name}");
+                        }
+                        catch (Exception ex)
+                        {
+                            return BadRequest(ex.Message);
+                        }
+                    }
+                    return NotFound($"Não foi encontrado nenhum cliente com o id: {emailModel.Id}");
                 }
                 return BadRequest("O id passado é inválido");
             }

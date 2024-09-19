@@ -18,7 +18,7 @@
   {
     "ContainingType": "ClientXP.Presentation.Controllers.ClientController",
     "Method": "Delete",
-    "RelativePath": "Client/Delete",
+    "RelativePath": "Client/delete",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -73,6 +73,22 @@
       {
         "Name": "clModel",
         "Type": "ClientXP.Application.Models.ClientModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ClientXP.Presentation.Controllers.ClientController",
+    "Method": "UpdateEmail",
+    "RelativePath": "Client/update-email",
+    "HttpMethod": "PATCH",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "emailModel",
+        "Type": "ClientXP.Application.Models.ClientEmailModel",
         "IsRequired": true
       }
     ],
