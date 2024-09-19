@@ -1,0 +1,6 @@
+@ClientXP_HostAddress = http://localhost:5125
+
+GET {{ClientXP_HostAddress}}/Program/
+Accept: application/json
+
+###
