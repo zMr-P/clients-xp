@@ -116,3 +116,5 @@ C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXPTest
 C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXPTests\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
 C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXPTests\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll
 C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXPTests\obj\Debug\net8.0\ClientXPTests.sourcelink.json
+C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXPTests\bin\Debug\net8.0\Castle.Core.dll
+C:\Users\paulo\OneDrive\Documentos\Aulas-Projetos\Projetos\ClientXP\ClientXPTests\bin\Debug\net8.0\Moq.dll

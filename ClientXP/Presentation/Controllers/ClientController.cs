@@ -1,8 +1,6 @@
 ﻿using ClientXP.Application.Models;
-using ClientXP.Application.Services;
 using ClientXP.Application.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Update.Internal;
 
 namespace ClientXP.Presentation.Controllers
 {
