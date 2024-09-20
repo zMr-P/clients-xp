@@ -99,7 +99,7 @@ namespace ClientXPTests.Application.Services
             {
                 Name = "Client",
                 Email = "client@sdsd.com",
-                CPF = "192.168.000.51"
+                CPF = "192.168.000-51"
             };
             var existingClient = new Client
             {
@@ -112,7 +112,7 @@ namespace ClientXPTests.Application.Services
             _mockRepository.Setup(repo => repo.GetAllAsync()).ReturnsAsync(new List<Client> { existingClient });
 
             var exception = await Assert.ThrowsAsync<ArgumentException>(() => _clientService.CreateAsync(clientModel));
-            Assert.Equal("O CPF ja está cadastrado", exception.Message);
+            Assert.Equal("O CPF já está cadastrado", exception.Message);
         }
 
         [Fact]

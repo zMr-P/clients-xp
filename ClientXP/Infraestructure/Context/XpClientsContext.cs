@@ -23,7 +23,7 @@ namespace ClientXP.Infraestructure.Context
             {
                 Id = 1,
                 Name = "Paulo",
-                Email = "PAULO.ROBCONC@GMAIL.COM",
+                Email = "PAULO.SOUZA@XPI.COM.BR",
                 CPF = "412.711.520-37",
             }, new Client
             {
