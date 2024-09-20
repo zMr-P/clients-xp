@@ -52,7 +52,7 @@ namespace ClientXP.Application.Services
                 {
                     if (dataClient.CPF.Equals(client.CPF))
                     {
-                        throw new ArgumentException("O CPF ja está cadastrado");
+                        throw new ArgumentException("O CPF já está cadastrado");
                     }
                 }
             }
